@@ -5,18 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baby Hadinaa! 💖</title>
     <style>
-        /* ❤️ Background Animation */
+        /* ❤️ Background Styling */
         body {
             text-align: center;
             font-family: 'Comic Sans MS', cursive, sans-serif;
             background: linear-gradient(to right, #ff758c, #ff7eb3);
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 100px;
         }
 
         /* ❤️ Floating Hearts */
@@ -27,7 +24,7 @@
         }
 
         .heart {
-            position: absolute;
+            position: fixed;
             width: 30px;
             height: 30px;
             background: red;
@@ -50,10 +47,11 @@
 
         /* ❤️ Glowing Title */
         h1 {
-            font-size: 28px;
+            font-size: 30px;
             color: white;
             text-shadow: 0 0 10px #ff0000, 0 0 20px #ff4d4d, 0 0 30px #ff8080;
             animation: glow 1.5s infinite alternate;
+            margin-top: 20px;
         }
 
         @keyframes glow {
@@ -73,8 +71,7 @@
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s;
             animation: pulse 1.5s infinite;
-            position: relative;
-            z-index: 10;
+            margin-bottom: 20px;
         }
 
         button:hover {
@@ -88,22 +85,25 @@
             100% { transform: scale(1); }
         }
 
-        /* ❤️ Image Styling */
+        /* ❤️ Image Styling (No Stretching) */
         #gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            gap: 15px;
+            padding: 20px;
             max-width: 90%;
-            margin-top: 20px;
+            margin: 0 auto;
         }
 
         #gallery img {
             width: 140px;
+            height: auto; /* ✅ Prevents stretching */
             margin: 10px;
             border-radius: 15px;
-            opacity: 0;
             border: 5px solid gold;
             box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.8);
+            opacity: 0;
             transform: scale(0.5) rotate(-10deg);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
@@ -118,7 +118,7 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Responsive Design for Mobile */
+        /* ❤️ Mobile-Friendly Adjustments */
         @media (max-width: 600px) {
             button {
                 font-size: 18px;
@@ -139,7 +139,7 @@
     <div id="gallery"></div>
 
     <script>
-        const images = ["ada.jpg", "ada2.jpg", "ada3.jpg", "ada4.jpg", "ada5.jpg", 
+        const images = ["ada1.jpg", "ada2.jpg", "ada3.jpg", "ada4.jpg", "ada5.jpg", 
                         "ada6.jpg", "ada7.jpg", "ada8.jpg", "ada9.jpg", "ada10.jpg", "ada11.jpg"];
 
         function showImages() {
@@ -161,19 +161,20 @@
             });
         }
 
-        // ❤️ Floating Hearts Generator (More for Mobile)
+        // ❤️ Floating Hearts Generator (Appears Everywhere)
         function createHearts() {
             setInterval(() => {
                 let heart = document.createElement("div");
                 heart.classList.add("heart");
                 heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh"; // ✅ Now hearts appear all over!
                 heart.style.animationDuration = Math.random() * 3 + 3 + "s";
                 let size = Math.random() * 25 + 10 + "px";
                 heart.style.width = size;
                 heart.style.height = size;
                 document.body.appendChild(heart);
                 setTimeout(() => { heart.remove(); }, 5000);
-            }, 200); // More frequent hearts
+            }, 200); // More hearts
         }
 
         createHearts();
